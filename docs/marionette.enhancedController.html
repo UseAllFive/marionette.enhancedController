@@ -34,7 +34,7 @@ tracking.</p></div></div><div class="code"><div class="wrapper">                
             <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
                 <span class="nx">appControllerLoaded</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
             <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Call the <code>register:instance</code> command.
-App.execute('register:instance', this, this._instanceId);</p></div></div><div class="code"><div class="wrapper">            <span class="nx">originalFunctions</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">options</span><span class="p">);</span>
+App.execute('register:instance', this, this._instanceId);</p></div></div><div class="code"><div class="wrapper">            <span class="nx">originalFunctions</span><span class="p">.</span><span class="nx">constructor</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="k">this</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">);</span>
         <span class="p">},</span>
 
         <span class="nx">destroy</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
