@@ -88,7 +88,6 @@ module.exports = function(grunt) {
         'clean',
         'jshint',
         'jscs',
-        'groc:all',
         'uglify'
     ];
     grunt.registerTask('default', defaultTasks);
