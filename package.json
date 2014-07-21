@@ -4,7 +4,7 @@
   "description": "Extend Marionette.Controller to allow for region management and debugging.",
   "repository": {
     "type": "git",
-    "url": "git://github.com/UseAllFive/marionette.enhancedController.git"
+    "url": "https://github.com/UseAllFive/marionette.enhancedController.git"
   },
   "author": "Justin Anastos <janastos@useallfive.com>",
   "license": "MIT",
