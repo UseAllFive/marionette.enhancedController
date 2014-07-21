@@ -21,6 +21,8 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
         pkg: pkg,
+        semver: require('semver'),
+
         bowerRelease: {
             options: {
                 endpoint: 'git@github.com:UseAllFive/marionette.enhancedController.git',
