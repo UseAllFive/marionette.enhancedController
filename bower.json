@@ -22,5 +22,6 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "endpoint": "git@github.com:UseAllFive/marionette.enhancedController.git"
 }
