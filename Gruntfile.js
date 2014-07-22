@@ -25,11 +25,9 @@ module.exports = function(grunt) {
         pkg: pkg,
         semver: require('semver'),
         meta: {
-            version: '<%= pkg.version %>',
             bundleBanner:
                 '// marionette.enhancedController\n' +
                 '// ----------------------------\n' +
-                '// v<%= pkg.version %>\n' +
                 '// Brought to you by [Use All Five, Inc.](http://www.useallfive.com)\n' +
                 '// ```\n' +
                 '// Author: Justin Anastos <janastos@useallfive.com>\n' +
