@@ -1,36 +1,23 @@
-/* # marionette.enhancdController
-
-Brought to you by [Use All Five, Inc.](http://www.useallfive.com)
-
-```
-Author: Justin Anastos <janastos@useallfive.com>
-Author URI: [http://www.useallfive.com](http://www.useallfive.com)
-Repository: https://github.com/UseAllFive/marionette.babyBird
-```
-
-Add `.show` method to a `Marionette.Controller`. Requires that `region` is
-passed in as an option at instantiation.
-
-Inspired by [Backbone Rails, Loading Views](http://www.backbonerails.com/screencasts/loading-views).
-
-*/
 (function(factory) {
     if (typeof define === 'function' && define.amd) {
         // AMD. Register as an anonymous module.
-        define(['marionette', 'backbone', 'jquery', 'underscore', 'spin', 'jquery.spin'], factory);
+        define(['marionette', 'backbone', 'jquery', 'underscore'], factory);
     } else {
         // Use browser globals. Will fail if they are not yet loaded.
-        /*globals Marionette, Backbone, $, _, spin */
-        factory(Marionette, Backbone, $, _, spin);
+        /*globals Marionette, Backbone, $, _ */
+        factory(Marionette, Backbone, $, _);
     }
 }(function(Marionette, Backbone, $, _) {
     var LoadingController;
     var LoadingView;
+    var Spinner;
     var appControllerLoaded = false;
     var controllerRegistry = {};
     var originalFunctions;
     var showLoading;
     var whenFetched;
+
+    Spinner = // @include ../tmp/spin.js
 
     whenFetched = function(entities, callback) {
         var xhrs;
@@ -244,11 +231,13 @@ Inspired by [Backbone Rails, Loading Views](http://www.backbonerails.com/screenc
         onShow: function() {
             var opts;
             opts = this._getOptions();
-            this.$el.spin(opts);
+
+            this.spinner = new Spinner(opts);
+            this.spinner.spin(this.$el.get(0));
         },
 
         onClose: function() {
-            this.$el.spin(false);
+            this.spinner.stop();
         },
 
         _getOptions: function() {

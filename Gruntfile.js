@@ -1,12 +1,14 @@
 var config;
 var matchdep = require('matchdep');
 var module;
+var path = require('path');
+var unwrap = require('unwrap');
 
 config = {
     files: {
         build: 'lib/marionette.enhancedController.js',
         check: [
-            'lib/marionette.enhancedController.js',
+            'src/marionette.enhancedController.js',
             'Gruntfie.js'
         ],
         dest: 'dist/marionette.enhancedController.min.js',
@@ -22,6 +24,23 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: pkg,
         semver: require('semver'),
+        meta: {
+            version: '<%= pkg.version %>',
+            bundleBanner:
+                '// marionette.enhancedController\n' +
+                '// ----------------------------\n' +
+                '// v<%= pkg.version %>\n' +
+                '// Brought to you by [Use All Five, Inc.](http://www.useallfive.com)\n' +
+                '// ```\n' +
+                '// Author: Justin Anastos <janastos@useallfive.com>\n' +
+                '// Author URI: [http://www.useallfive.com](http://www.useallfive.com)\n' +
+                '// Repository: https://github.com/UseAllFive/marionette.babyBird\n' +
+                '// ```\n' +
+                '// Add `.show` method to a `Marionette.Controller` and provide loading views.\n' +
+                '//\n' +
+                '// Inspired by [Backbone Rails, Loading Views](http://www.backbonerails.com/screencasts/loading-views).' +
+                '\n\n'
+        },
 
         bowerRelease: {
             options: {
@@ -58,7 +77,19 @@ module.exports = function(grunt) {
 
         clean: {
             dist: 'dist',
-            docs: 'docs'
+            docs: 'docs',
+            lib: 'lib',
+            tmp: 'tmp'
+        },
+
+        concat: {
+            options: {
+                banner: '<%= meta.bundleBanner %>'
+            },
+            bundle: {
+                src: '<%= preprocess.bundle.dest %>',
+                dest: 'lib/marionette.enhancedController.js'
+            }
         },
 
         jshint: {
@@ -96,6 +127,13 @@ module.exports = function(grunt) {
             }
         },
 
+        preprocess: {
+            bundle: {
+                src: 'src/marionette.enhancedController.js',
+                dest: 'tmp/marionette.enhancedController.js'
+            }
+        },
+
         prompt: {
             bump: {
                 options: {
@@ -130,6 +168,25 @@ module.exports = function(grunt) {
             }
         },
 
+        template: {
+            options: {
+                data: {
+                    version: '<%= pkg.version %>'
+                }
+            },
+            bundle: {
+                src: '<%= preprocess.bundle.dest %>',
+                dest: '<%= preprocess.bundle.dest %>'
+            }
+        },
+
+        unwrap: {
+            spin: {
+                src: './bower_components/spinjs/spin.js',
+                dest: './tmp/spin.js'
+            }
+        },
+
         uglify: {
             all: {
                 src: config.files.build,
@@ -150,6 +207,30 @@ module.exports = function(grunt) {
 
     // Load all npm dependencies.
     matchdep.filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+
+    // Taken from https://github.com/marionettejs/backbone.marionette/blob/v2.0.3/Gruntfile.js#L247
+    grunt.registerMultiTask('unwrap', 'Unwrap UMD', function() {
+        /*global __dirname: true */
+        var done = this.async();
+        var timesLeft = 0;
+
+        this.files.forEach(function(file) {
+            file.src.forEach(function(src) {
+                timesLeft += 1;
+                unwrap(path.resolve(__dirname, src), function(err, content) {
+                    if (err) {
+                        return grunt.log.error(err);
+                    }
+                    grunt.file.write(path.resolve(__dirname, file.dest), content);
+                    grunt.log.ok(file.dest + ' created.');
+                    timesLeft -= 1;
+                    if (timesLeft <= 0) {
+                        done();
+                    }
+                });
+            });
+        });
+    });
 
     // Register tasks.
     defaultTasks = [
@@ -173,5 +254,17 @@ module.exports = function(grunt) {
 
     grunt.registerTask('default', defaultTasks);
     grunt.registerTask('dev', defaultTasks.concat('watch'));
-    grunt.registerTask('publish', ['uglify', 'prompt:bump', 'bump:prompt', 'bowerRelease']);
+    grunt.registerTask('publish', 'Pack up all the files into a single file, minify, and publish to bower.', [
+        'jshint',
+        'jscs',
+        'prompt:bump',
+        'bump:prompt',
+        'clean:lib',
+        'clean:tmp',
+        'unwrap',
+        'preprocess',
+        'concat',
+        'uglify',
+        'bowerRelease'
+    ]);
 };
