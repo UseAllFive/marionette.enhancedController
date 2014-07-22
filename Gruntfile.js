@@ -32,7 +32,7 @@ module.exports = function(grunt) {
                 '// ```\n' +
                 '// Author: Justin Anastos <janastos@useallfive.com>\n' +
                 '// Author URI: [http://www.useallfive.com](http://www.useallfive.com)\n' +
-                '// Repository: https://github.com/UseAllFive/marionette.babyBird\n' +
+                '// Repository: https://github.com/UseAllFive/marionette.enhancedController\n' +
                 '// ```\n' +
                 '// Add `.show` method to a `Marionette.Controller` and provide loading views.\n' +
                 '//\n' +
