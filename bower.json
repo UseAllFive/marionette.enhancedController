@@ -1,6 +1,6 @@
 {
   "name": "marionette.enhancedController",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "homepage": "https://github.com/UseAllFive/marionette.enhancedController",
   "authors": [
     "Justin Anastos <janastos@useallfive.com>"
@@ -22,5 +22,9 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "devDependencies": {
+    "spinjs": "~2.0.1"
+  },
+  "endpoint": "git@github.com:UseAllFive/marionette.enhancedController.git"
 }
