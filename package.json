@@ -1,6 +1,6 @@
 {
   "name": "marionette.enhancedController",
-  "version": "0.1.5",
+  "version": "1.0.0",
   "description": "Extend Marionette.Controller to allow for region management and debugging.",
   "repository": {
     "type": "git",
