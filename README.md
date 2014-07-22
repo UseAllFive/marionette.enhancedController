@@ -17,7 +17,6 @@ and the base code used to create this module.
 
 ## Installation
 
-- Install [spin.js](https://github.com/fgnass/spin.js)
 - Include `lib/marionette.enhancedController.js` before any
   `Marionette.Controllers` are used
 
