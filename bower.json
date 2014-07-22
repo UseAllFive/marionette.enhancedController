@@ -23,8 +23,8 @@
     "test",
     "tests"
   ],
-  "dependencies": {},
   "devDependencies": {
     "spinjs": "~2.0.1"
-  }
+  },
+  "endpoint": "git@github.com:UseAllFive/marionette.enhancedController.git"
 }
