@@ -1,5 +1,4 @@
 *.map
-*.min.js
 *.pyc
 *.pyo
 .editorconfig
