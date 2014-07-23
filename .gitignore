@@ -1,0 +1,13 @@
+*.map
+*.pyc
+*.pyo
+.editorconfig
+.jscsrc
+.jshintignore
+.jshintrc
+.scss-lint.yml
+.npmignore
+/node_modules
+/tmp
+/bower_components
+/docs
