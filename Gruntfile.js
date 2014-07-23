@@ -28,7 +28,7 @@ module.exports = function(grunt) {
             bundleBanner:
                 '// marionette.enhancedController\n' +
                 '// ----------------------------\n' +
-                '// v<%= semver.inc(pkg.version, grunt.config(bump.increment)) %>\n' +
+                '// v<%= semver.inc(pkg.version, grunt.config("bump.increment")) %>\n' +
                 '//\n' +
                 '// Brought to you by [Use All Five, Inc.](http://www.useallfive.com)\n' +
                 '// ```\n' +
