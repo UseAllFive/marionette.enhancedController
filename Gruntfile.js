@@ -269,7 +269,7 @@ module.exports = function(grunt) {
         'preprocess',
         'concat',
         'uglify',
-        'bump:prompt'
-        // 'bowerRelease'
+        'bump:prompt',
+        'bowerRelease'
     ]);
 };
