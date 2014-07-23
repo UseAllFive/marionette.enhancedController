@@ -12,7 +12,10 @@ config = {
             'Gruntfie.js'
         ],
         dist: 'dist/marionette.enhancedController.min.js',
-        docs: 'docs'
+        docs: 'docs',
+        src: [
+            'src/marionette.enhancedController.js'
+        ]
     }
 };
 
@@ -29,6 +32,8 @@ module.exports = function(grunt) {
                 '// marionette.enhancedController\n' +
                 '// ----------------------------\n' +
                 '// v<%= semver.inc(pkg.version, grunt.config("bump.increment")) %>\n' +
+                '//\n' +
+                '// Annotated source code can be found here: http://useallfive.github.io/marionette.enhancedController/marionette.enhancedController.html\n' +
                 '//\n' +
                 '// Brought to you by [Use All Five, Inc.](http://www.useallfive.com)\n' +
                 '// ```\n' +
@@ -116,23 +121,26 @@ module.exports = function(grunt) {
 
         groc: {
             options: {
+                github: false,
+                index: 'marionette.enhancedController.html',
                 out: config.files.docs,
-                strip: 'lib/'
+                silent: true,
+                strip: 'src/'
             },
-            all: {
-                src: config.files.build
+            local: {
+                src: config.files.src
             },
             github: {
                 options: {
                     github: true
                 },
-                src: config.files.build
+                src: config.files.src
             }
         },
 
         preprocess: {
             bundle: {
-                src: 'src/marionette.enhancedController.js',
+                src: config.files.src,
                 dest: 'tmp/marionette.enhancedController.js'
             }
         },
@@ -269,6 +277,7 @@ module.exports = function(grunt) {
         'concat',
         'uglify',
         'bump:prompt',
-        'bowerRelease'
+        'bowerRelease',
+        'groc:github'
     ]);
 };

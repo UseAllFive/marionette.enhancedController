@@ -15,6 +15,8 @@ Many thanks to [Brian Mann](https://github.com/brian-mann)'s [Backbone Rails: Lo
 Views](http://www.backbonerails.com/screencasts/loading-views) for the logic
 and the base code used to create this module.
 
+[Annotated Source](http://useallfive.github.io/marionette.enhancedController/marionette.enhancedController.html)
+
 ## Installation
 
 - Include `lib/marionette.enhancedController.js` before any
