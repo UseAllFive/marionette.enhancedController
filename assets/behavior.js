@@ -6,67 +6,57 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
 
   tableOfContents = [
     {
-      "type": "folder",
+      "type": "file",
       "data": {
-        "path": "src",
-        "title": "src"
+        "language": {
+          "nameMatchers": [".js"],
+          "pygmentsLexer": "javascript",
+          "multiLineComment": ["/*", "*", "*/"],
+          "singleLineComment": ["//"],
+          "ignorePrefix": "}",
+          "foldPrefix": "^",
+          "name": "JavaScript"
+        },
+        "sourcePath": "/Users/justinanastos/ua5/marionette.enhancedController/src/marionette.enhancedController.js",
+        "projectPath": "src/marionette.enhancedController.js",
+        "targetPath": "marionette.enhancedController",
+        "pageTitle": "marionette.enhancedController",
+        "title": "marionette.enhancedController"
       },
       "depth": 1,
-      "children": [
+      "outline": [
         {
-          "type": "file",
+          "type": "heading",
           "data": {
-            "language": {
-              "nameMatchers": [".js"],
-              "pygmentsLexer": "javascript",
-              "multiLineComment": ["/*", "*", "*/"],
-              "singleLineComment": ["//"],
-              "ignorePrefix": "}",
-              "foldPrefix": "^",
-              "name": "JavaScript"
-            },
-            "sourcePath": "/Users/justinanastos/ua5/marionette.enhancedController/src/marionette.enhancedController.js",
-            "projectPath": "src/marionette.enhancedController.js",
-            "targetPath": "src/marionette.enhancedController",
-            "pageTitle": "src/marionette.enhancedController",
-            "title": "marionette.enhancedController"
+            "level": 2,
+            "title": "Constructor",
+            "slug": "constructor"
           },
-          "depth": 2,
-          "outline": [
-            {
-              "type": "heading",
-              "data": {
-                "level": 2,
-                "title": "Constructor",
-                "slug": "constructor"
-              },
-              "depth": 2
-            }, {
-              "type": "heading",
-              "data": {
-                "level": 2,
-                "title": "Show loading function",
-                "slug": "show-loading-function"
-              },
-              "depth": 2
-            }, {
-              "type": "heading",
-              "data": {
-                "level": 2,
-                "title": "Loading View",
-                "slug": "loading-view"
-              },
-              "depth": 2
-            }, {
-              "type": "heading",
-              "data": {
-                "level": 2,
-                "title": "Loading Controller",
-                "slug": "loading-controller"
-              },
-              "depth": 2
-            }
-          ]
+          "depth": 2
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 2,
+            "title": "Show loading function",
+            "slug": "show-loading-function"
+          },
+          "depth": 2
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 2,
+            "title": "Loading View",
+            "slug": "loading-view"
+          },
+          "depth": 2
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 2,
+            "title": "Loading Controller",
+            "slug": "loading-controller"
+          },
+          "depth": 2
         }
       ]
     }
