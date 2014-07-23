@@ -11,7 +11,7 @@ config = {
             'src/marionette.enhancedController.js',
             'Gruntfie.js'
         ],
-        dest: 'dist/marionette.enhancedController.min.js',
+        dist: 'dist/marionette.enhancedController.min.js',
         docs: 'docs'
     }
 };
@@ -28,6 +28,8 @@ module.exports = function(grunt) {
             bundleBanner:
                 '// marionette.enhancedController\n' +
                 '// ----------------------------\n' +
+                '// v<%= semver.inc(pkg.version, grunt.config("bump.increment")) %>\n' +
+                '//\n' +
                 '// Brought to you by [Use All Five, Inc.](http://www.useallfive.com)\n' +
                 '// ```\n' +
                 '// Author: Justin Anastos <janastos@useallfive.com>\n' +
@@ -62,12 +64,15 @@ module.exports = function(grunt) {
             options: {
                 commitFiles: [
                     'package.json',
-                    'bower.json'
+                    'bower.json',
+                    config.files.build,
+                    config.files.dist
                 ],
                 files: [
                     'package.json',
                     'bower.json'
                 ],
+                push: true,
                 pushTo: 'origin',
                 updateConfigs: ['pkg']
             }
@@ -188,7 +193,7 @@ module.exports = function(grunt) {
         uglify: {
             all: {
                 src: config.files.build,
-                dest: config.files.dest
+                dest: config.files.dist
             }
         },
 
@@ -243,6 +248,7 @@ module.exports = function(grunt) {
      */
     grunt.registerTask('bump:prompt', function() {
         var increment = grunt.config('bump.increment');
+
         if (!increment) {
             grunt.fatal('bump.increment config not set!');
         }
@@ -256,13 +262,13 @@ module.exports = function(grunt) {
         'jshint',
         'jscs',
         'prompt:bump',
-        'bump:prompt',
         'clean:lib',
         'clean:tmp',
         'unwrap',
         'preprocess',
         'concat',
         'uglify',
+        'bump:prompt',
         'bowerRelease'
     ]);
 };
