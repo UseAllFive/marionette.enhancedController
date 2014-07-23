@@ -9,7 +9,7 @@ config = {
         build: 'lib/marionette.enhancedController.js',
         check: [
             'src/marionette.enhancedController.js',
-            'Gruntfie.js'
+            'Gruntfile.js'
         ],
         dist: 'dist/marionette.enhancedController.min.js',
         docs: 'docs',
