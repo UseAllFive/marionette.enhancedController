@@ -6,42 +6,33 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
 
   tableOfContents = [
     {
-      "type": "file",
+      "type": "folder",
       "data": {
-        "language": {
-          "nameMatchers": [".js"],
-          "pygmentsLexer": "javascript",
-          "multiLineComment": ["/*", "*", "*/"],
-          "singleLineComment": ["//"],
-          "ignorePrefix": "}",
-          "foldPrefix": "^",
-          "name": "JavaScript"
-        },
-        "sourcePath": "/Users/justinanastos/ua5/marionette.enhancedController/lib/marionette.enhancedController.js",
-        "projectPath": "lib/marionette.enhancedController.js",
-        "targetPath": "marionette.enhancedController",
-        "pageTitle": "marionette.enhancedController",
-        "title": "marionette.enhancedController"
+        "path": "src",
+        "title": "src"
       },
       "depth": 1,
-      "outline": [
+      "children": [
         {
-          "type": "heading",
+          "type": "file",
           "data": {
-            "level": 2,
-            "title": "marionette.enhancedController",
-            "slug": "marionetteenhancedcontroller"
+            "language": {
+              "nameMatchers": [".js"],
+              "pygmentsLexer": "javascript",
+              "multiLineComment": ["/*", "*", "*/"],
+              "singleLineComment": ["//"],
+              "ignorePrefix": "}",
+              "foldPrefix": "^",
+              "name": "JavaScript"
+            },
+            "sourcePath": "/Users/justinanastos/ua5/marionette.enhancedController/src/marionette.enhancedController.js",
+            "projectPath": "src/marionette.enhancedController.js",
+            "targetPath": "src/marionette.enhancedController",
+            "pageTitle": "src/marionette.enhancedController",
+            "title": "marionette.enhancedController"
           },
-          "depth": 2
-        }, {
-          "type": "heading",
-          "data": {
-            "level": 1,
-            "title": "rgb or #rrggbb",
-            "slug": "rgb-or-rrggbb"
-          },
-          "depth": 1,
-          "children": [
+          "depth": 2,
+          "outline": [
             {
               "type": "heading",
               "data": {
