@@ -22,7 +22,6 @@ config = {
 
 module.exports = function(grunt) {
 
-    var defaultTasks;
     var pkg = grunt.file.readJSON('package.json');
 
     grunt.initConfig({
@@ -211,7 +210,7 @@ module.exports = function(grunt) {
             },
             js: {
                 files: config.files.check,
-                tasks: ['clean', 'uglify', 'groc:all']
+                tasks: 'local:publish'
             }
         }
     });
@@ -243,14 +242,6 @@ module.exports = function(grunt) {
         });
     });
 
-    // Register tasks.
-    defaultTasks = [
-        'clean',
-        'jshint',
-        'jscs',
-        'uglify'
-    ];
-
      /**
      * Internal task to use the prompt settings to create a tag
      */
@@ -264,8 +255,8 @@ module.exports = function(grunt) {
         grunt.task.run('bump:' + increment);
     });
 
-    grunt.registerTask('default', defaultTasks);
-    grunt.registerTask('dev', defaultTasks.concat('watch'));
+    grunt.registerTask('default', 'local:publish');
+    grunt.registerTask('dev', ['local:publish', 'watch']);
     grunt.registerTask('publish', 'Pack up all the files into a single file, minify, and publish to bower.', [
         'jshint',
         'jscs',
@@ -279,5 +270,15 @@ module.exports = function(grunt) {
         'bump:prompt',
         'bowerRelease',
         'groc:github'
+    ]);
+    grunt.registerTask('local:publish', 'Pack files up into a locally testable version. Same as publish, but without the actual bumping and publishing.', [
+        'jshint',
+        'jscs',
+        'clean:lib',
+        'clean:tmp',
+        'unwrap',
+        'preprocess',
+        'concat',
+        'uglify'
     ]);
 };
