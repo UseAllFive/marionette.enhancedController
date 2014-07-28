@@ -13,6 +13,7 @@ config = {
         ],
         dist: 'dist/marionette.enhancedController.min.js',
         docs: 'docs',
+        tmp: 'tmp/marionette.enhancedController.js',
         src: [
             'src/marionette.enhancedController.js'
         ]
@@ -96,7 +97,7 @@ module.exports = function(grunt) {
             },
             bundle: {
                 src: '<%= preprocess.bundle.dest %>',
-                dest: 'lib/marionette.enhancedController.js'
+                dest: config.files.build
             }
         },
 
@@ -140,7 +141,7 @@ module.exports = function(grunt) {
         preprocess: {
             bundle: {
                 src: config.files.src,
-                dest: 'tmp/marionette.enhancedController.js'
+                dest: config.files.tmp
             }
         },
 
