@@ -126,7 +126,7 @@
 
         show: function(view, options) {
             if (!this.region) {
-                throw new Error('A controller must be given a region in it\'s options');
+                throw new Error('A controller must be given a region in its options');
             }
 
             // Default `options` to `{}`
