@@ -10,6 +10,10 @@
   "moduleType": [
     "amd"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/UseAllFive/marionette.enhancedController.git"
+  },
   "keywords": [
     "marionette",
     "controller",
