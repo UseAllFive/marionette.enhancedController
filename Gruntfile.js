@@ -22,6 +22,7 @@ config = {
 
 module.exports = function(grunt) {
 
+    var bowerJson = grunt.file.readJSON('bower.json');
     var pkg = grunt.file.readJSON('package.json');
 
     grunt.initConfig({
@@ -49,8 +50,7 @@ module.exports = function(grunt) {
 
         bowerRelease: {
             options: {
-                endpoint: 'git@github.com:UseAllFive/marionette.enhancedController.git',
-                main: 'lib/marionette.enhancedController.js'
+                endpoint: bowerJson.repository.url
             },
             deploy: {
                 files: [{
