@@ -224,7 +224,7 @@ view (which would snap the user back to the old view unexpectedly)
                         <span class="k">this</span><span class="p">.</span><span class="nx">region</span><span class="p">.</span><span class="nx">currentView</span><span class="p">.</span><span class="nx">$el</span><span class="p">.</span><span class="nx">css</span><span class="p">(</span><span class="s1">&#39;opacity&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">);</span>
                         <span class="k">break</span><span class="p">;</span>
                     <span class="k">case</span> <span class="s1">&#39;spinner&#39;</span><span class="o">:</span>
-                        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">region</span><span class="p">.</span><span class="nx">currentView</span> <span class="o">!==</span> <span class="nx">loadingView</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">region</span> <span class="o">&amp;&amp;</span> <span class="k">this</span><span class="p">.</span><span class="nx">region</span><span class="p">.</span><span class="nx">currentView</span> <span class="o">!==</span> <span class="nx">loadingView</span><span class="p">)</span> <span class="p">{</span>
                             <span class="k">return</span> <span class="nx">realView</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span>
                         <span class="p">}</span>
                 <span class="p">}</span>
