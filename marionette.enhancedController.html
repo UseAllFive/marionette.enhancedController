@@ -60,6 +60,10 @@ tracking.</p></div></div><div class="code"><div class="wrapper">                
         <span class="p">},</span>
 
         <span class="nx">show</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">view</span><span class="p">,</span> <span class="nx">options</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">isClosed</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span><span class="p">;</span>
+            <span class="p">}</span>
+
             <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="k">this</span><span class="p">.</span><span class="nx">region</span><span class="p">)</span> <span class="p">{</span>
                 <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s1">&#39;A controller must be given a region in its options&#39;</span><span class="p">);</span>
             <span class="p">}</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Default <code>options</code> to <code>{}</code></p></div></div><div class="code"><div class="wrapper">            <span class="k">if</span> <span class="p">(</span><span class="nx">_</span><span class="p">.</span><span class="nx">isUndefined</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span> <span class="o">||</span> <span class="nx">options</span> <span class="o">===</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
@@ -75,6 +79,8 @@ tracking.</p></div></div><div class="code"><div class="wrapper">                
 registry.</p></div></div><div class="code"><div class="wrapper">            <span class="k">this</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;destroy close&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
                 <span class="k">delete</span> <span class="k">this</span><span class="p">.</span><span class="nx">region</span><span class="p">;</span>
                 <span class="k">delete</span> <span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">;</span></div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>Remove instance from the registry.</p></div></div><div class="code"><div class="wrapper">                <span class="k">delete</span> <span class="nx">controllerRegistry</span><span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">_instanceId</span><span class="p">];</span>
+
+                <span class="k">this</span><span class="p">.</span><span class="nx">isClosed</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
             <span class="p">});</span>
         <span class="p">},</span>
 
