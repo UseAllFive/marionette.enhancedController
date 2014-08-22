@@ -12,7 +12,6 @@
     var LoadingController;
     var LoadingView;
     var Spinner;
-    var appControllerLoaded = false;
     var controllerRegistry = {};
     var originalFunctions;
     var showLoading;
@@ -96,7 +95,7 @@
         constructor: function(options) {
             options = options || {};
 
-            if (appControllerLoaded) {
+            if (options.region) {
                 // The app controller has already been loaded.
 
                 // Define `this.region` so this controller knows where to show
@@ -109,10 +108,6 @@
 
                 // Save instance in the registry.
                 controllerRegistry[this._instanceId] = this;
-            } else {
-                // The app controller is loading now.
-
-                appControllerLoaded = true;
             }
 
             // Override the close or destroy function.
