@@ -8,6 +8,7 @@
         factory(Marionette, Backbone, $, _);
     }
 }(function(Marionette, Backbone, $, _) {
+    /*jshint camelcase: true */
     var LoadingController;
     var LoadingView;
     var Spinner;
@@ -224,6 +225,11 @@
 
     // ## Loading View
     LoadingView = Marionette.ItemView.extend({
+        constructor: function EnhancedController_LoadingView() {
+            // Name constructor.
+            return Object.getPrototypeOf(Object.getPrototypeOf(this)).constructor.apply(this, arguments);
+        },
+
         template: false,
 
         className: 'loading-container',
