@@ -81,6 +81,10 @@
         },
 
         show: function(view, options) {
+            if (this.isClosed) {
+                return;
+            }
+
             if (!this.region) {
                 throw new Error('A controller must be given a region in its options');
             }
@@ -108,6 +112,8 @@
 
                 // Remove instance from the registry.
                 delete controllerRegistry[this._instanceId];
+
+                this.isClosed = true;
             });
         },
 
