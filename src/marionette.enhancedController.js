@@ -8,7 +8,7 @@
         factory(Marionette, Backbone, $, _);
     }
 }(function(Marionette, Backbone, $, _) {
-    /*jshint camelcase: true */
+    /*jshint camelcase: false */
     var LoadingController;
     var LoadingView;
     var Spinner;
@@ -35,7 +35,7 @@
         destroy: Marionette.Controller.prototype.destroy
     };
 
-    function overrideSync() {
+    (function overrideSync() {
         var _sync = Backbone.sync;
 
         Backbone.sync = function(method, entity, options) {
@@ -52,10 +52,7 @@
 
             return sync;
         };
-    }
-
-    // Override Backbone.sync
-    overrideSync();
+    })();
 
     // Static function to create a `close` or `destroy` function on a
     // `controllerInstance`.
