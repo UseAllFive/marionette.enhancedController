@@ -53,40 +53,6 @@
         };
     })();
 
-    // Static function to create a `close` or `destroy` function on a
-    // `controllerInstance`.
-    function overrideDestroyOrCloseFunction(controllerInstance) {
-        var functionName;
-        var originalFunction;
-
-        // Determine if we have a `close` or a `destroy` function. The API
-        // changed going to Backbone 2.
-        if (_.isFunction(controllerInstance.close)) {
-            // < Backbone 2
-            functionName = 'close';
-        } else if (_.isFunction(controllerInstance.destroy)) {
-            // >= Backbone 2
-            functionName = 'destroy';
-        } else {
-            throw new Error('Could not find a close or destroy method on the controller');
-        }
-
-        // Save the original function.
-        originalFunction = controllerInstance[functionName];
-
-        // Modify the original function.
-        controllerInstance[functionName] = function() {
-            delete this.region;
-            delete this.options;
-
-            // Remove instance from the registry.
-            delete controllerRegistry[this._instanceId];
-
-            // Call original function.
-            originalFunction.apply(this, arguments);
-        };
-    }
-
     Marionette.Controller = Marionette.Controller.extend({
         // ## Constructor
         // Override `Marionette.Controller.constructor`. Here, we'll save
@@ -109,9 +75,6 @@
                 // Save instance in the registry.
                 controllerRegistry[this._instanceId] = this;
             }
-
-            // Override the close or destroy function.
-            overrideDestroyOrCloseFunction(this);
 
             // Call the original constructor.
             originalFunctions.controllerConstructor.apply(this, arguments);
@@ -136,6 +99,16 @@
             this._setMainView(view);
 
             this._manageView(view, options);
+
+            // When this controller is closed or destroyed, clean up the
+            // registry.
+            this.on('destroy close', function() {
+                delete this.region;
+                delete this.options;
+
+                // Remove instance from the registry.
+                delete controllerRegistry[this._instanceId];
+            });
         },
 
         _setMainView: function(view) {
