@@ -272,8 +272,6 @@ module.exports = function(grunt) {
         'groc:github'
     ]);
     grunt.registerTask('local:publish', 'Pack files up into a locally testable version. Same as publish, but without the actual bumping and publishing.', [
-        'jshint',
-        'jscs',
         'clean:lib',
         'clean:tmp',
         'unwrap',
