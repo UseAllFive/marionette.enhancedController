@@ -282,7 +282,7 @@
                         this.region.currentView.$el.css('opacity', '');
                         break;
                     case 'spinner':
-                        if (this.region.currentView !== loadingView) {
+                        if (this.region && this.region.currentView !== loadingView) {
                             return realView.close();
                         }
                 }
